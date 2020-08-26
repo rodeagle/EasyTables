@@ -1,0 +1,44 @@
+{
+  "name": "easytables",
+  "version": "1.0.0",
+  "description": "Easy Tables",
+  "main": "app.js",
+  "dependencies": {
+    "handlebars": "^4.7.6",
+    "jquery": "^3.5.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.5.3",
+    "deepmerge": "^4.2.2",
+    "exports-loader": "^0.7.0",
+    "fibers": "^5.0.0",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.2.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "vue-loader": "^15.9.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --mode development -p --watch --process.env.NODE_ENV='development'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodeagle/EasyTables.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rodeagle/EasyTables/issues"
+  },
+  "homepage": "https://github.com/rodeagle/EasyTables#readme"
+}

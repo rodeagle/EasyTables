@@ -1,0 +1,167 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>App</title>
+    <meta name="viewport" content="width=600px, initial-scale=1" />
+    <script charset="utf-8" type="module" src="./dist/bundle.js"></script>
+</head>
+<body>
+
+    <div>Header</div>
+    <div class="container-fluid">
+
+        <!--header properties-->
+        <div>
+            <p>
+                <strong>Header Properties</strong>
+                <div id="header-properties"></div>
+            </p>
+        </div>
+
+        <!--global properties-->
+        <div>
+            <p>
+                <strong>Header Properties</strong>
+                <div id="global-properties"></div>
+            </p>
+        </div>
+
+        <!--example 1-->
+        <div>
+            <p>
+                <strong>Example:</strong><br />
+
+                A simple table with a simple data layout
+            </p>
+
+            <div id="table-1"></div>
+
+            <br />
+
+            <strong>Code</strong>
+            <pre class="bg-light p-3">
+import tables from '../src/easy-tables';
+// example 1
+tables.CreateTable('#table-1', {
+headers: [
+{ col: 4, name: "ID" },
+{ col: 4, name: "Name" },
+{ col: 4, name: "Age" }
+],
+rows: [
+{ id: 1, name: 'Test 1', age: 20 },
+{ id: 2, name: 'Test 2', age: 22 },
+{ id: 3, name: 'Test 3', age: 25 }
+]
+});
+            </pre>
+        </div>
+
+        <!--example class-->
+
+        <style>
+            .custom-class {
+                background-color: palevioletred;
+            }
+        </style>
+        <div>
+            <p>
+                <strong>Example with <i>class</i> header property :</strong><br />
+
+                You can customize all of the cells with the field and set a custom class, must be defined in the css and accesible from the view currently rendered.
+            </p>
+
+            <div id="table-2"></div>
+
+            <br />
+
+            <strong>Code</strong>
+            <pre class="bg-light p-3">
+// custom class exist in the css of the site 
+.custom-class {
+    background-color: palevioletred;
+}
+
+import tables from '../src/easy-tables';
+
+tables.CreateTable('#table-2', {
+headers: [
+{ col: 4, name: "ID", class : 'custom-class' },
+{ col: 4, name: "Name" },
+{ col: 4, name: "Age", class: 'custom-class' }
+],
+rows: [
+{ id: 1, name: 'Test 1', age: 20 },
+{ id: 2, name: 'Test 2', age: 22 },
+{ id: 3, name: 'Test 3', age: 25 }
+]
+});
+            </pre>
+        </div>
+
+
+        <!--example title-->
+
+        <div>
+            <p>
+                <strong>Example with <i>title</i> header property :</strong><br />
+
+                A simple setter for the title attribute of the cell, usually used for hover ups tool tips, it accepts custom html template too.
+            </p>
+
+            <div id="table-3"></div>
+
+            <br />
+
+            <strong>Code</strong>
+            <pre class="bg-light p-3">
+
+import tables from '../src/easy-tables';
+
+tables.CreateTable('#table-3', {
+    headers: [
+        { col: 4, name: "ID", title : 'This is ID field' },
+        { col: 4, name: "Name", title : 'This is the Name field' },
+        { col: 4, name: "Age", title : '<div>Current Age : {{GetItemByName this age}}</div>' }
+    ],
+    rows: [
+        { id: 1, name: 'Test 1', age: 20 },
+        { id: 2, name: 'Test 2', age: 22 },
+        { id: 3, name: 'Test 3', age: 25 }
+    ]
+});
+            </pre>
+        </div>
+
+
+    </div> <!--container-->
+</body>
+</html>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+        crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script>
+    $.fn.serializeObject = function () {
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function () {
+        if (o[this.name]) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+</script>
