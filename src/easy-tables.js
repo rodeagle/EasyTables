@@ -33,7 +33,7 @@ let dynamicTemplate = `
                 <div class="row no-gutters {{NthOpt ../this @index}} dt-row">
                     {{#each ../headers}}
                         <input type="hidden" name="{{getValueName ../this @index}}" value="{{getValue ../this @index}}">
-                        <div class="col col-{{col}} p-1 {{class}} {{desktopClass}} {{rowClass}}" title="{{{title}}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isarray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
+                        <div class="col col-{{col}} {{#if rowClass}}{{rowClass}}{{else}}p-1{{/if}} {{class}} {{desktopClass}}" title="{{{title}}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isarray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
                     {{/each}}
                 </div>
             {{/each}}
@@ -162,11 +162,11 @@ let dynamicStyleTemplate = `
         border-right:1px solid #DEE2E6;
     }
 
-    .tb .row {
+    .tb .row:not(.isarray) {
         border-top:1px solid #DEE2E6;
     }
 
-    .tb .row:last-child {
+    .tb .row:last-child:not(.isarray) {
         border-bottom:1px solid #DEE2E6;
     }
 
@@ -179,7 +179,7 @@ let dynamicStyleTemplate = `
     function Init() {
 
         css_service.Append(dynamicStyleTemplate, {});
-        var DesktopCount = 0;
+        //var DesktopCount = 0;
 
 
         handlebars.registerHelper('getValue', function (prop, i) {
@@ -231,14 +231,10 @@ let dynamicStyleTemplate = `
 
 
         handlebars.registerHelper('GetItemByName', function (array, value) {
+            console.log(array);
+            console.log(value);
             return array[value];
         });
-
-
-        //handlebars.registerHelper('GetItemByName', function (fullarray, index, name) {
-        //    DesktopCount++;
-        //    return fullarray.rows[DesktopCount][name];
-        //});
 
 
         handlebars.registerHelper('IfNot', function (value) {
@@ -266,14 +262,14 @@ let dynamicStyleTemplate = `
                 let row = element.row;
                 let _alignment = element.alignment || 'center';
                 let _class = element.class || 'col';
-                let string = "<div class='row margin-0'>";
+                let string = "<div class='row margin-0 no-gutters isarray'>";
                 let textalign = "text-" + _alignment;
                 row.forEach(function (item) {
                     var hasblank = item == '';
                     if (hasblank) {
                         item = "";
                     }
-                    string += "<div class='" + textalign + " " + _class + "'>" + item + "</div>";
+                    string += `<div class='${textalign} ${_class}'>${item}</div>`;
                 });
                 string += "</div>";
                 html += string;
@@ -319,15 +315,26 @@ let dynamicStyleTemplate = `
  
     };
 
+    function MapHtmlToJson($row) {
+        // serialize into a json object all elements children to the row
+        return $row
+            .find('input:hidden')
+            .serializeArray()
+            .map(function (x) {
+                let json = [];
+                json[x.name] = x.value;
+                return json;
+            })
+            .reduce(function (x, y) {
+                return $.extend({}, x, y);
+            }, {});
+    }
 
     function RecompileNestedTemplates(container) {
         let rows = $(container).find('.dt-row');
         rows.each(function () {
-            let newProperties = $(this).serializeObject();
-            console.log($(this));
-            console.log(newProperties);
+            let newProperties = MapHtmlToJson($(this));
             let source = $(this).html();
-            console.log(source);
             let template = handlebars.compile(source);
             let html = template(newProperties);
             $(this).html(html);

@@ -100,11 +100,27 @@ tables.CreateTable('#table-3', {
     headers: [
         { col: 4, name: "ID", title: 'This is ID field' },
         { col: 4, name: "Name", title: 'This is the Name field' },
-        { col: 4, name: "Age", title: 'Current Age :  {{GetItemByName this age}}'}
+        { col: 4, name: "Age", title: "Current Age :  {{GetItemByName this 'age'}}"}
     ],
     rows: [
         { id: 1, name: 'Test 1', age: 20 },
         { id: 2, name: 'Test 2', age: 22 },
         { id: 3, name: 'Test 3', age: 25 }
+    ]
+});
+
+
+// example isarray
+
+tables.CreateTable('#table-4', {
+    headers: [
+        { col: 4, name: "ID" },
+        { col: 4, name: "Groups" },
+        { col: 4, name: "Names", isarray: true, rowClass: 'p-0' }
+    ],
+    rows: [
+        { id: 1, name: 'Test 1', names: [{ row: ['John', 'John', 'John'], alignment : 'left' }, { row: ['John', 'John', 'John'] }, { row: ['John', 'John', 'John'] }] },
+        { id: 2, name: 'Test 2', names: [{ row: ['John', 'John', 'John'], class: 'col text-danger' }, { row: ['John', 'John', 'John'] }] },
+        { id: 3, name: 'Test 3', names: [{ row: ['John', 'John', 'John'], class: 'col border-0' }] }
     ]
 });
