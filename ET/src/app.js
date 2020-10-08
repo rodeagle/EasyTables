@@ -1,4 +1,4 @@
-import tables from '../src/easy-tables.es5';
+import tables from '../src/easy-tables';
 
 // header properties
 
