@@ -22,15 +22,21 @@
     <meta property="twitter:title" content="Easy Tables">
     <meta property="twitter:description" content="Easy Tables, create easy and dynamic tables for desktop and mobile with only pure javascript object no html/css required.">
     <!--<meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">-->
-    <script charset="utf-8" type="module" src="./dist/bundle.js"></script>
+    <script charset="utf-8" type="module" src="./dist/bundle.min.js"></script>
 </head>
 <body>
     <div class="container-fluid">
         <div class="container">
-            <h2>Easy Tables</h2>
-            <br>
-            <div class="col-12 col-md-3">
-                <a class="btn btn-primary btn-block" target="_blank" href="https://raw.githubusercontent.com/rodeagle/EasyTables/master/src/easy-tables.js"> Download uncompressed Version</a>
+            <div class="py-3">
+                <h2>Easy Tables</h2>
+            </div>
+            <div class="row no-gutters py-3">
+                <div class="col-12 col-md-4 pr-3">
+                    <a class="btn btn-primary btn-block" target="_blank" href="https://raw.githubusercontent.com/rodeagle/EasyTables/master/src/easy-tables.js"> Download uncompressed Version</a>
+                </div>
+                <div class="col-12 col-md-4 pr-3">
+                    <a class="btn btn-primary btn-block" target="_blank" href="https://raw.githubusercontent.com/rodeagle/EasyTables/master/src/easy-tables.min.js"> Download compressed Version</a>
+                </div>
             </div>
         </div>
     </div>
@@ -216,18 +222,18 @@ tables.CreateTable('#table-4', {
 
 <script>
     $.fn.serializeObject = function () {
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function () {
-        if (o[this.name]) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (o[this.name]) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
             }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
+        });
+        return o;
+    };
 </script>

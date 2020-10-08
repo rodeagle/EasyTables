@@ -1,4 +1,4 @@
-import tables from '../src/easy-tables';
+import tables from '../src/easy-tables.es5';
 
 // header properties
 
@@ -116,7 +116,7 @@ tables.CreateTable('#table-4', {
     headers: [
         { col: 4, name: "ID" },
         { col: 4, name: "Groups" },
-        { col: 4, name: "Names", isarray: true, rowClass: 'p-0' }
+        { col: 4, name: "Names", isArray: true, rowClass: 'p-0' }
     ],
     rows: [
         { id: 1, name: 'Test 1', names: [{ row: ['John', 'John', 'John'], alignment : 'left' }, { row: ['John', 'John', 'John'] }, { row: ['John', 'John', 'John'] }] },

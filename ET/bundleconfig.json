@@ -1,0 +1,20 @@
+[
+  {
+    "outputFileName": "src/app.min.js",
+    "inputFiles": [
+      "src/app.js"
+    ]
+  },
+  {
+    "outputFileName": "src/easy-tables.min.js",
+    "inputFiles": [
+      "src/easy-tables.js"
+    ]
+  },
+  {
+    "outputFileName": "dist/bundle.min.js",
+    "inputFiles": [
+      "dist/bundle.js"
+    ]
+  }
+]

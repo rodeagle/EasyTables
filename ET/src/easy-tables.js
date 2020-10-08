@@ -33,7 +33,7 @@ let dynamicTemplate = `
                 <div class="row no-gutters {{NthOpt ../this @index}} dt-row">
                     {{#each ../headers}}
                         <input type="hidden" name="{{getValueName ../this @index}}" value="{{getValue ../this @index}}">
-                        <div class="col col-{{col}} {{#if rowClass}}{{rowClass}}{{else}}p-1{{/if}} {{class}} {{desktopClass}}" title="{{{title}}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isarray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
+                        <div class="col col-{{col}} {{#if rowClass}}{{rowClass}}{{else}}p-1{{/if}} {{class}} {{desktopClass}}" title="{{{title}}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isArray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
                     {{/each}}
                 </div>
             {{/each}}
@@ -49,7 +49,7 @@ let dynamicTemplate = `
                         {{#if hiddenInput}}
                             <input type="hidden" name="{{getValueName this @../index}}" value="{{getValue  this @../index}}"/>
                         {{else}}
-                            <div class="col-12 {{../class}} {{../rowClass}} {{../mobileClass}} {{NthOpt ../../this @index}}" title="{{../title}}" {{#if ../data}} data-{{ ../data}}="{{GetItemByName this ../data}}" {{/if}}>{{#if ../isHTML}}{{{getValue this @../index}}}{{else if isarray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue this @../index}}{{/if}}</div>
+                            <div class="col-12 {{../class}} {{../rowClass}} {{../mobileClass}} {{NthOpt ../../this @index}}" title="{{../title}}" {{#if ../data}} data-{{ ../data}}="{{GetItemByName this ../data}}" {{/if}}>{{#if ../isHTML}}{{{getValue this @../index}}}{{else if isArray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue this @../index}}{{/if}}</div>
                         {{/if}}
                     {{/each}}
                 </div>
@@ -64,7 +64,7 @@ let dynamicTemplate = `
                     {{#if hiddenInput}}
                         <input type="hidden" name="{{getValueName this @../index}}" value="{{getValue this @../index}}"/>
                     {{else}}
-                        <div class="col-12 {{class}} {{rowClass}} {{mobileClass}} {{../../OnEvenClass}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName this data}}" {{/if}}>{{#if isHTML}}{{{getValue this @../index}}}{{else if isarray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
+                        <div class="col-12 {{class}} {{rowClass}} {{mobileClass}} {{../../OnEvenClass}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName this data}}" {{/if}}>{{#if isHTML}}{{{getValue this @../index}}}{{else if isArray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
                     {{/if}}
                 </div>
                 {{/if}}
@@ -73,7 +73,7 @@ let dynamicTemplate = `
                     {{#if hiddenInput}}
                         <input type="hidden" name="{{getValueName ../../rows (_add1 @../index)}}" value="{{getValue ../../rows (_add1 @../index)}}""/>
                     {{else}}
-                        <div class="col-12 {{class}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName this data}}" {{/if}}><div class="{{rowClass}} {{mobileClass}} {{../../OnUnEvenClass}}">{{#if isHTML}}{{{getValue (GetItemByName ../../rows (_add1 @../index)) @index}}}{{else if isarray}}{{{buildArray (getValue (GetItemByName ../../rows (_add1 @../index)) @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue (GetItemByName ../../rows (_add1 @../index)) @index}}{{/if}}</div></div>
+                        <div class="col-12 {{class}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName this data}}" {{/if}}><div class="{{rowClass}} {{mobileClass}} {{../../OnUnEvenClass}}">{{#if isHTML}}{{{getValue (GetItemByName ../../rows (_add1 @../index)) @index}}}{{else if isArray}}{{{buildArray (getValue (GetItemByName ../../rows (_add1 @../index)) @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue (GetItemByName ../../rows (_add1 @../index)) @index}}{{/if}}</div></div>
                     {{/if}}
                 </div>
                 {{/if}}
@@ -88,7 +88,7 @@ let dynamicTemplate = `
                 <div class="row no-gutters {{returnIfUnEvenNumber 'grey' @../index}} {{NthOpt ../this @../index}}">
                     <input type="hidden" name="{{getValueName ../this @index}}" value="{{getValue ../this @index}}"/>
                     <div class="col col-6 header-cell {{class}} {{headerClass}} {{#if headerInvisible}} hidden-handlebars-item{{/if}} {{#if hiddenInput}}hidden-handlebars-item{{/if}}" {{#if filter}}filter="{{filter}}"{{/if}}>{{name}}</div>
-                    <div class="col {{#if headerInvisible}}col-12{{else}}col-6{{/if}}{{class}}{{rowClass}}{{mobileClass}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isarray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
+                    <div class="col {{#if headerInvisible}}col-12{{else}}col-6{{/if}}{{class}}{{rowClass}}{{mobileClass}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isArray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
                 </div>
                 {{/each}}
                 </div>
@@ -155,10 +155,10 @@ let dynamicStyleTemplate = `
         content: "\u21E7";
     }
 
-    .tb  .row .col {
+    .tb .row:not(.isarray) > .col {
         border-left:1px solid #DEE2E6;
     }
-    .tb  .row .col:last-child {
+    .tb .row:not(.isarray) > .col:last-child {
         border-right:1px solid #DEE2E6;
     }
 
@@ -231,8 +231,6 @@ let dynamicStyleTemplate = `
 
 
         handlebars.registerHelper('GetItemByName', function (array, value) {
-            console.log(array);
-            console.log(value);
             return array[value];
         });
 
@@ -249,7 +247,7 @@ let dynamicStyleTemplate = `
         handlebars.registerHelper('NthOpt', function (array, index) {
             let ind = '' + index;
             let nthopt = array.NthOpt;
-            if (nthopt == undefined) return '';
+            if (nthopt === undefined) return '';
             let res = nthopt[ind] || '';
             return res;
         });
@@ -265,7 +263,7 @@ let dynamicStyleTemplate = `
                 let string = "<div class='row margin-0 no-gutters isarray'>";
                 let textalign = "text-" + _alignment;
                 row.forEach(function (item) {
-                    var hasblank = item == '';
+                    var hasblank = item === '';
                     if (hasblank) {
                         item = "";
                     }
@@ -291,12 +289,11 @@ let dynamicStyleTemplate = `
             //class: '',
             //title: '',
             //col: 0,
-            //anchorclass: '',
             //headerClass: '',
             //rowClass: '',
             //isHTML: false,
             //headerInvisible: true,
-            //isarray: false,
+            //isArray: false,
             //desktopClass: ''; // add a class only to the desktop view,
             //mobileClass: '',
             //hiddenInput : false,
@@ -311,7 +308,7 @@ let dynamicStyleTemplate = `
         //OnEvenClass: '', //add a class to the even row
         //OnUnEvenClass: '', //adds a class to the uneven row
         NoNthOptInMobile: false,
-        boostrapVersion: 4,
+        //boostrapVersion: 4,
  
     };
 
