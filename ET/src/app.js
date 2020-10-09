@@ -15,7 +15,7 @@ import tables from '../src/easy-tables';
 //    isHTML: false,
 //        headerInvisible : true,
 //            isarray : false,
-//                desktopClass : ''  // add a class only to the desktop view,
+//                desktopClass : ''ï¿½ // add a class only to the desktop view,
 //    mobileClass: ''
 
 tables.CreateTable("#header-properties", {
@@ -56,7 +56,7 @@ tables.CreateTable("#global-properties", {
         { name: 'rows', type: 'Array', description: 'This field is required and must contain the objects for the cell values to be displayed', required: 'X' },
         { name: 'bordered', type: 'Boolean', description: 'Will the table cells have a borders' },
         { name: 'NthOpt', type: 'Array', description: 'If you have a fixed table or want to apply certain class by row number' },
-        { name: 'MobileRenderMode', type: 'String', description: 'The mobile render view type available : Normal, PairRender, OneHeader ', required : 'X' },
+        { name: 'MobileRenderMode', type: 'String', description: 'The mobile render view type available : Normal, PairRender, OneHeader | Default is Normal ', },
         { name: 'OnEvenClass', type: 'String', description: 'Add a custom class on even row' },
         { name: 'OnUnEvenClass', type: 'String', description: 'Add a custom class on uneven row' },
         { name: 'NoNthOptInMobile', type: 'String', description: 'Prevent that the classes added on the NthOpt option to be applied on the mobile view' },
@@ -123,4 +123,23 @@ tables.CreateTable('#table-4', {
         { id: 2, name: 'Test 2', names: [{ row: ['John', 'John', 'John'], class: 'col text-danger' }, { row: ['John', 'John', 'John'] }] },
         { id: 3, name: 'Test 3', names: [{ row: ['John', 'John', 'John'], class: 'col border-0' }] }
     ]
+});
+
+
+// NthOpt
+
+tables.CreateTable('#table-5', {
+    headers: [
+        { col: 4, name: "ID" },
+        { col: 8, name: "Groups" },
+    ],
+    rows: [
+        { id: 1, name: 'Test 1', },
+        { id: 2, name: 'Test 2', },
+        { id: 3, name: 'Test 3', },
+        { id: 3, name: 'Test 4', },
+        { id: 3, name: 'Test 5', },
+        { id: 3, name: 'Test 6', },
+    ],
+    NthOpt:  {1 : 'text-primary', 3 : 'text-danger', 4 : 'bg-success' }
 });

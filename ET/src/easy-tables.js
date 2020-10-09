@@ -44,10 +44,10 @@ let dynamicTemplate = `
                 {{#if (eq MobileRenderMode 'OneHeader')}}
                 {{#each headers}}
                 <div class="row no-gutters dt-row">
-                    <div class="col-12 {{class}} {{headerClass}} header-cell grey {{NthOpt ../this @index}} {{#if headerInvisible}} hidden-handlebars-item{{/if}}">{{name}}</div>
+                    <div class="col-12 {{class}} {{headerClass}} header-cell bg-light {{NthOpt ../this @index}} {{#if headerInvisible}} hidden-handlebars-item{{/if}}">{{name}}</div>
                     {{#each ../rows}}
                         {{#if hiddenInput}}
-                            <input type="hidden" name="{{getValueName this @../index}}" value="{{getValue  this @../index}}"/>
+                            <input type="hidden" name="{{getValueName this @../index}}" value="{{getValueï¿½ this @../index}}"/>
                         {{else}}
                             <div class="col-12 {{../class}} {{../rowClass}} {{../mobileClass}} {{NthOpt ../../this @index}}" title="{{../title}}" {{#if ../data}} data-{{ ../data}}="{{GetItemByName this ../data}}" {{/if}}>{{#if ../isHTML}}{{{getValue this @../index}}}{{else if isArray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue this @../index}}{{/if}}</div>
                         {{/if}}
@@ -85,7 +85,7 @@ let dynamicTemplate = `
                 {{#each rows}}
                 <div class='dt-row'>
                 {{#each ../headers}}
-                <div class="row no-gutters {{returnIfUnEvenNumber 'grey' @../index}} {{NthOpt ../this @../index}}">
+                <div class="row no-gutters {{returnIfUnEvenNumber 'bg-light' @../index}} {{NthOpt ../this @../index}}">
                     <input type="hidden" name="{{getValueName ../this @index}}" value="{{getValue ../this @index}}"/>
                     <div class="col col-6 header-cell {{class}} {{headerClass}} {{#if headerInvisible}} hidden-handlebars-item{{/if}} {{#if hiddenInput}}hidden-handlebars-item{{/if}}" {{#if filter}}filter="{{filter}}"{{/if}}>{{name}}</div>
                     <div class="col {{#if headerInvisible}}col-12{{else}}col-6{{/if}}{{class}}{{rowClass}}{{mobileClass}}" title="{{title}}" {{#if data}} data-{{data}}="{{GetItemByName ../this data}}" {{/if}}>{{#if isHTML}}{{{getValue ../this @index}}}{{else if isArray}}{{{buildArray (getValue ../this @index)}}}{{else if template}}{{{template}}}{{else}}{{getValue ../this @index}}{{/if}}</div>
@@ -103,11 +103,6 @@ let dynamicStyleTemplate = `
     .margin-30 {
     margin-left: 30px;
     margin-right: 30px; }
-
-
-    .grey {
-    background-color: #efefef; }
-
 
     .hidden-handlebars-item {
     display: none !important;
@@ -283,23 +278,21 @@ let dynamicStyleTemplate = `
 
     var _properties = {
         headers: [
-          {
-            //name: '',
-            //maxheight: '',
-            //class: '',
-            //title: '',
-            //col: 0,
-            //headerClass: '',
-            //rowClass: '',
-            //isHTML: false,
-            //headerInvisible: true,
-            //isArray: false,
-            //desktopClass: ''; // add a class only to the desktop view,
-            //mobileClass: '',
-            //hiddenInput : false,
-            // template : false;
-     
-        }
+            {
+                //name: '',
+                //maxheight: '',
+                //class: '',
+                //title: '',
+                //col: 0,
+                //headerClass: '',
+                //rowClass: '',
+                //isHTML: false,
+                //headerInvisible: true,
+                //isArray: false,
+                //desktopClass: ''; // add a class only to the desktop view,
+                //mobileClass: '',
+                // template : false;
+            }
         ],
         rows: [],
         bordered: true,
@@ -307,9 +300,7 @@ let dynamicStyleTemplate = `
         MobileRenderMode: 'Normal', //Normal, OneHeader, PairRender // required to be set on the json obj,
         //OnEvenClass: '', //add a class to the even row
         //OnUnEvenClass: '', //adds a class to the uneven row
-        NoNthOptInMobile: false,
-        //boostrapVersion: 4,
- 
+        NoNthOptInMobile: false 
     };
 
     function MapHtmlToJson($row) {
@@ -350,8 +341,8 @@ export default {
         RecompileNestedTemplates(container);
         return $(container);
     },
-    SerializeTableContainer: function (container) {
-        return $(container).find("input[type='hidden'], :input:not(:hidden)").serializeObject();
-    }
+    // SerializeTableContainer: function (container) {
+    //     return $(container).find("input[type='hidden'], :input:not(:hidden)").serializeObject();
+    // }
 };
 

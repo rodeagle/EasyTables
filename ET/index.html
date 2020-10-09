@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>App</title>
-    <!--<meta name="viewport" content="width=600px, initial-scale=1" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Primary Meta Tags -->
     <title>Easy Tables</title>
     <meta name="title" content="Easy Tables">
@@ -24,23 +24,24 @@
     <!--<meta property="twitter:image" content="https://metatags.io/assets/meta-tags-16a33a6a8531e519cc0936fbba0ad904e52d35f34a46c97a2c9f6f7dd7d336f2.png">-->
     <script  type="module" src="./dist/bundle.js"></script>
 </head>
-<body>
-    <div class="container-fluid">
-        <div class="container">
-            <div class="py-3">
+<body class="bg-light">
+    <div class="container-fluid bg-dark text-light">
+        <div class="container px-0">
+            <div class="py-3 text-center text-lg-left">
                 <h2>Easy Tables</h2>
             </div>
+            <p class="text-center text-lg-left">Follow me on github and fork the project : <a href="https://github.com/rodeagle/EasyTables">https://github.com/rodeagle/EasyTables</a> @rodeagle</p>
             <div class="row no-gutters py-3">
-                <div class="col-12 col-md-4 pr-3">
+                <div class="col-12 col-lg-4 pr-lg-3 pr-0">
                     <a class="btn btn-primary btn-block" target="_blank" href="https://raw.githubusercontent.com/rodeagle/EasyTables/master/ET/src/easy-tables.js"> Download uncompressed Version</a>
                 </div>
-                <div class="col-12 col-md-4 pr-3">
+                <div class="col-12 col-lg-4 pr-lg-3 pr-0 pt-3 pt-lg-0 ">
                     <a class="btn btn-primary btn-block" target="_blank" href="https://raw.githubusercontent.com/rodeagle/EasyTables/master/ET/src/easy-tables.min.js"> Download compressed Version</a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container pt-3 px-3 px-lg-5 bg-white">
 
         <!--header properties-->
         <div>
@@ -53,7 +54,7 @@
         <!--global properties-->
         <div>
             <p>
-                <strong>Header Properties</strong>
+                <strong>Global Properties</strong>
                 <div id="global-properties"></div>
             </p>
         </div>
@@ -170,16 +171,13 @@ tables.CreateTable('#table-3', {
 
         <div>
             <p>
-                <strong>Example with <i>isarray</i> header property :</strong><br />
+                <strong>Example with <i>isarray</i> header property :</strong>
 
-                To customize more you can have an array of values per cell allowing multiple values and not single ones into an array.
-                <br />
-                You can also customize the arrays with custom classes and alignment 
-                <br />
-                <strong>alignment :</strong> 'left' | 'center' | 'right'<br />
-                <strong>class : </strong> 'col {any class}'
-                <br />
-                Also apply custom row classes on the header if you want to change the property of the container row
+                <p>To customize more you can have an array of values per cell allowing multiple values and not single ones into an array.</p>
+                <p>You can also customize the arrays with custom classes and alignment </p>
+                <p><strong>alignment :</strong> 'left' | 'center' | 'right'<br />
+                    <strong>class : </strong> 'col {any class}'</p>
+                <p>Also apply custom row classes on the header if you want to change the property of the container row</p>
             </p>
 
             <div id="table-4"></div>
@@ -207,7 +205,50 @@ tables.CreateTable('#table-4', {
         </div>
 
 
+                <!--example nth opt-->
+
+                <div>
+                    <p class="py-2">
+                        <strong>Example with <i>NthOpt</i> global property :</strong><br />
+                        <br>
+        
+                        <p>If you have a fixed table or a selected few rows that one specific classes be applied to them you can added them yourself or dynamically with javascript/</p>
+                        <p>Example : NthOpt: { 1: 'classes', 2: 'classes', 10: 'classes' }</p>
+                        <p>The index count starts at 0, so first row the index would be 0, then 1, 2, 3 etc </p>
+                        <p><strong>Note:</strong> the global property <i>NoNthOptInMobile</i> is set to false by default so this properties and classes dont affect mobile view but you can set it true on the global object like NthOpt and it would affect mobile too but could give some undesired results.</p>
+                    </p>
+        
+                    <div id="table-5"></div>
+        
+                    <br />
+        
+                    <strong>Code</strong>
+                    <pre class="bg-light p-3">        
+import tables from '../src/easy-tables';
+        
+tables.CreateTable('#table-5', {
+    headers: [
+        { col: 4, name: "ID" },
+        { col: 8, name: "Groups" },
+    ],
+    rows: [
+        { id: 1, name: 'Test 1', },
+        { id: 2, name: 'Test 2', },
+        { id: 3, name: 'Test 3', },
+        { id: 3, name: 'Test 4', },
+        { id: 3, name: 'Test 5', },
+        { id: 3, name: 'Test 6', },
+    ],
+    NthOpt:  {1 : 'text-primary', 3 : 'text-danger', 4 : 'bg-success' }
+});
+                    </pre>
+                </div>
+
+
     </div> <!--container-->
+    <footer class="bg-dark text-light p-5 text-center">
+        @rodeagle 
+    </footer>
 </body>
 </html>
 
